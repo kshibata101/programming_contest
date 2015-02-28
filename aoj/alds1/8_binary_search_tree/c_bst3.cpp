@@ -69,14 +69,14 @@ void remove(int k) {
   
   if (z->l == nullptr && z->r == nullptr) {
     // has not child
-    if (z->p->l != nullptr && z->p->l->k == z->k) {
+    if (z->p->l == z) {
       z->p->l = nullptr;
     } else {
       z->p->r = nullptr;
     }
   } else if (z->l == nullptr) {
     // has one child
-    if (z->p->l != nullptr && z->p->l->k == z->k) {
+    if (z->p->l == z) {
       z->p->l = z->r;
       z->r->p = z->p;
     } else {
@@ -84,7 +84,7 @@ void remove(int k) {
       z->r->p = z->p;
     }
   } else if (z->r == nullptr) {
-    if (z->p->l != nullptr && z->p->l->k == z->k) {
+    if (z->p->l == z) {
       z->p->l = z->l;
       z->l->p = z->p;
     } else {
@@ -101,7 +101,7 @@ void remove(int k) {
     remove(w->k);
 
     // 次にzの親の子をwに更新する
-    if (z->p->l != nullptr && z->p->l->k == z->k) {
+    if (z->p->l == z) {
       z->p->l = w;
     } else {
       z->p->r = w;
