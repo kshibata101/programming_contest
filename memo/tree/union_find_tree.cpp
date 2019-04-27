@@ -3,7 +3,7 @@
 struct UnionFind {
   vector<int> data;
   UnionFind(int size): data(size, -1) {}
-  bool unionSet(int x, int y) {
+  bool unite(int x, int y) {
     x = root(x); y = root(y);
     if (x != y) {
       if (data[y] < data[x]) swap(x, y);
@@ -12,7 +12,7 @@ struct UnionFind {
     }
     return x != y;
   }
-  bool findSet(int x, int y) {
+  bool find(int x, int y) {
     return root(x) == root(y);
   }
   int root(int x) {
