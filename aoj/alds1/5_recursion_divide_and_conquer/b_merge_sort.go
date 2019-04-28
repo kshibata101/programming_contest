@@ -5,6 +5,7 @@ import (
 	"bufio"
 	"os"
 	"strconv"
+	"strings"
 )
 
 func main() {
@@ -20,12 +21,7 @@ func main() {
 	}
 
 	cnt := mergeSort(&s, 0, len(s), 0)
-	fmt.Print(s[0])
-	for i := 1; i < n; i++ {
-		fmt.Print(" ")
-		fmt.Print(s[i])
-	}
-	fmt.Println()
+	fmt.Println(strings.Trim(fmt.Sprint(s), "[]"))
 	fmt.Println(cnt)
 }
 
