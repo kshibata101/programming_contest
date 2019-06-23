@@ -3,25 +3,56 @@ package main
 import (
 	"fmt"
 	"sort"
+	"bufio"
+	"os"
+	"strconv"
 )
 
 func main() {
 	var t string
 	fmt.Scan(&t)
+	ts := []rune(t)
 
 	// construct suffix array
-	_ = makeSuffixArray(t)
+	ss := makeSuffixArray(t)
 
-	/*
 	var q int
 	fmt.Scan(&q)
 	sc := bufio.NewScanner(os.Stdin)
+	wr := bufio.NewWriter(os.Stdout)
 	for i := 0; i < q; i++ {
 		sc.Scan()
 		p := sc.Text()
-		// check
+		ps := []rune(p)
+
+		l := 0
+		r := len(ts)
+		for r-l > 1 {
+			m := (r+l)/2
+			idx := int(ss[m+1])
+			lst := idx + len(ps)
+			if lst >= len(ts) {
+				lst = len(ts)
+			}
+			if p < string(ts[idx:lst]) {
+				r = m
+			} else {
+				l = m
+			}
+		}
+		idx := int(ss[l+1])
+		lst := idx + len(ps)
+		if lst >= len(ts) {
+			lst = len(ts)
+		}
+		if p == string(ts[idx:lst]) {
+			wr.WriteString(strconv.Itoa(1))
+		} else {
+			wr.WriteString(strconv.Itoa(0))
+		}
+		wr.WriteString("\n")
 	}
-	*/
+	wr.Flush()
 }
 
 var n, k int
@@ -74,14 +105,12 @@ func makeSuffixArray(t string) Suffixes {
 		for i := 1; i <= n; i++ {
 			tmp[int(ss[i])] = tmp[int(ss[i-1])]
 			if compare(ss[i-1], ss[i]) {
-				fmt.Println("less")
 				tmp[int(ss[i])] += 1
 			}
 		}
 		for i := 0; i <= n; i++ {
 			ranks[i] = tmp[i]
 		}
-		fmt.Println(ss, ranks)
 	}
 	return ss
 }
