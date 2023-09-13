@@ -1,3 +1,3 @@
 module github.com/kshibata101/programming_contest
 
-go 1.12
+go 1.13
