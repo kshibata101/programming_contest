@@ -10,10 +10,10 @@ func main() {
 	hb, wb, b := scan()
 	hx, wx, x := scan()
 
-	for ia := 0; ia+ha <= hx; ia++ {
-		for ja := 0; ja+wa <= wx; ja++ {
-			for ib := 0; ib+hb <= hx; ib++ {
-				for jb := 0; jb+wb <= wx; jb++ {
+	for ia := -ha+1; ia < hx; ia++ {
+		for ja := -wa+1; ja < wx; ja++ {
+			for ib := -hb+1; ib < hx; ib++ {
+				for jb := -wb+1; jb < wx; jb++ {
 					ab := make([]string, hx)
 					for i := 0; i < hx; i++ {
 						ab[i] = strings.Repeat(".", wx)
