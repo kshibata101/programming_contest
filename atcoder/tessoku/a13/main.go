@@ -19,8 +19,9 @@ func main() {
 	}
 
 	sum := 0
-	l := 1
+	l := 0
 	for i := 0; i < n-1; i++ {
+		prevl := l
 		r := n - 1
 		for l < r {
 			m := (l + r + 1) / 2
@@ -35,7 +36,7 @@ func main() {
 		}
 
 		sum += (l - i + 1) * (l - i) / 2
-		// 余分に足してる分を引き算しないと
+		sum -= (prevl - i + 1) * (prevl - i) / 2
 	}
 	fmt.Println(sum)
 }
